@@ -43,7 +43,7 @@
 
 .task-container{
   height: 100vh;
-  background-color: #ced4da;
+  background-color: #c2c0ab;
 }
 
 .modal-heading{
@@ -54,3 +54,7 @@
 #0dcaf0 
 #ffc107
 */
+
+.about .justify{
+  text-align: justify;
+}

@@ -5,6 +5,14 @@ import TaskContainer from "./components/TaskContainer";
 import { useEffect, useState } from "react";
 import UpdateTaskForm from "./components/UpdateTaskForm";
 import DeleteModal from "./components/DeleteModal";
+import About from "./components/About";
+import {
+  BrowserRouter as Router,
+  RouterProvider,
+  Routes,
+  Route,
+  Link
+} from 'react-router-dom';
 // import Card from "./components/Card";
 
 function App() {
@@ -109,9 +117,12 @@ const deleteTask = () =>{
   
   return (
    
-    <div className="">
+      <Router>
+      <div className="">   
       <Navbar/>
-      <div className="row row-cols-1 row-cols-md-3 g-4 mx-4 p-4">
+      
+      <Routes>
+        <Route exact path="/" element={<div className="row row-cols-1 row-cols-md-3 g-4 mx-4 p-4">
         <div className="col">
           <TaskContainer 
           type="new" 
@@ -151,11 +162,18 @@ const deleteTask = () =>{
         handleDragStart={handleDragStart}
         />
         </div>
-      </div>
+      </div>}> 
+        </Route>
+        <Route exact path="/about" element={<About />} >
+            
+        </Route>
+      </Routes>
+      
       <UpdateTaskForm task={currentTask} updateTask={updateTask} />
       <TaskForm addTask={addTask}/> 
       <DeleteModal confirmDelete={deleteTask} />
     </div>
+    </Router>
   )
 }
 

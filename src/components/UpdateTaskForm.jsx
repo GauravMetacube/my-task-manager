@@ -13,14 +13,14 @@ function UpdateTaskForm({ task ,updateTask}) {
 
     useEffect(()=>{
       let newDate = new Date();
-      newDate = newDate.toISOString().split('T')[0];
+      // newDate = newDate.toISOString().split('T')[0];
+      newDate = newDate.toLocaleString();
       if(task){
         setTitle(task.title);
         setDescription(task.description);
         setPriority(task.priority);
         setStatus(task.status);
         setCreationDate(task.creationDate);
-        setCompletionDate(newDate);
        const radio= document.querySelectorAll('input[name="priority"]');
        radio.forEach(element =>  {
           if(element.value===task.priority) 
@@ -28,6 +28,7 @@ function UpdateTaskForm({ task ,updateTask}) {
        });
        if(task.status==='completed'){
         setIsCompleted(true);
+        setCompletionDate(newDate);
        }
        else{
         setIsCompleted(false);
@@ -77,13 +78,15 @@ function UpdateTaskForm({ task ,updateTask}) {
           </div>
           <div className='row mb-3 g-0'>
             <label className='form-label col-sm-3' htmlFor="startDate">Creation Date</label>
-            <input id="startDate" className="form-control col-sm-9 w-75" type="date" value={creationDate} onChange={(e) => setCreationDate(e.target.value)} disabled />
+            <small className='text-muted col-sm-9'>{creationDate}</small>
+            {/* <input id="startDate" className="form-control col-sm-9 w-75" type="date" value={creationDate} onChange={(e) => setCreationDate(e.target.value)} disabled /> */}
           </div>
           {
             isCompleted && 
             <div className='row mb-3 g-0'>
             <label className='form-label col-sm-3' htmlFor="startDate">Completion Date</label>
-            <input id="endDate" className="form-control col-sm-9 w-75" type="date" value={completionDate} onChange={(e) => setCompletionDate(e.target.value)} disabled />
+            <small className='text-muted col-sm-9'>{completionDate}</small>
+            {/* <input id="endDate" className="form-control col-sm-9 w-75" type="date" value={completionDate} onChange={(e) => setCompletionDate(e.target.value)} disabled /> */}
             </div>
           }
           

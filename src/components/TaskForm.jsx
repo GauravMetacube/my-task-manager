@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 function TaskForm({addTask}) {
-
+  
     let newDate = new Date();
-    newDate = newDate.toISOString().split('T')[0];
+    newDate = newDate.toLocaleString();
+    // newDate = newDate.toISOString().split('T')[0];
     
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
@@ -12,9 +13,14 @@ function TaskForm({addTask}) {
     const [creationDate, setCreationDate] = useState(newDate);
     // const [CompletionDate, setCompletionDate] = useState(newDate);
 
-
     const addTaskDetail = (e) => {
         e.preventDefault();
+
+        let newDate = new Date();
+        newDate = newDate.toLocaleString();
+        // newDate = newDate.toISOString().split('T')[0];
+        setCreationDate(newDate);
+
         if(title===''){
           alert("please fill the required field");
          
